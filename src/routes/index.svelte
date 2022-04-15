@@ -11,7 +11,7 @@
 
     <div>The current URL is: {url}</div>
 
-    <p>note: run the "dev:extension" script for hot reloading.</p>
+    <p>note: check <a href="https://www.google.com">https://www.google.com</a> for injected button, or any other page to injected pop-up</p>
 </div>
 
 <style>

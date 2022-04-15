@@ -1,10 +1,13 @@
 {
-  "name": "sveltekit-extension",
+  "name": "gmp-extension",
   "version": "0.0.1",
   "scripts": {
-    "dev:extension": "nodemon --watch src --watch static --ext .* --exec \"npm run build & npx esbuild src/content_scripts/main.ts --bundle --outdir=build/content_scripts/\"",
+    "decrypt": "crypt-aes decrypt -s key.pem.caes -p $CONFIG_SECRET -k",
+    "encrypt": "crypt-aes encrypt -s key.pem -p $CONFIG_SECRET -k",
     "dev": "svelte-kit dev",
-    "build": "svelte-kit build",
+    "build": "svelte-kit build; mkdir -p build/content_scripts; cp src/content_scripts/*.js build/content_scripts/",
+    "pack": "node -e 'import(`./scripts/utils.js`).then(u => u.packExtension())'",
+    "installLocal": "node -e 'import(`./scripts/utils.js`).then(u => u.installLocal())'",
     "package": "svelte-kit package",
     "preview": "svelte-kit preview",
     "check": "svelte-check --tsconfig ./tsconfig.json",
@@ -12,18 +15,23 @@
   },
   "devDependencies": {
     "@sveltejs/adapter-auto": "next",
-    "@sveltejs/kit": "next",
+    "@sveltejs/kit": "1.0.0-next.291",
+    "@types/chrome": "^0.0.177",
+    "@typescript-eslint/eslint-plugin": "^5.19.0",
+    "@typescript-eslint/parser": "^5.19.0",
+    "crypt-aes": "^1.1.1",
+    "dotenv": "^16.0.0",
+    "esbuild": "^0.14.18",
+    "eslint": "^8.13.0",
+    "node-sass": "^7.0.1",
     "nodemon": "^2.0.15",
     "svelte": "^3.44.0",
     "svelte-check": "^2.2.6",
     "svelte-preprocess": "^4.9.4",
-    "sveltekit-adapter-chrome-extension": "^1.0.1-next.1",
+    "sveltekit-adapter-chrome-extension": "github:borgius/sveltekit-adapter-chrome-extension",
     "tslib": "^2.3.1",
     "typescript": "^4.4.3"
   },
   "type": "module",
-  "dependencies": {
-    "@types/chrome": "^0.0.177",
-    "esbuild": "^0.14.18"
-  }
+  "dependencies": {}
 }

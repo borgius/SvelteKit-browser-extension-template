@@ -6,7 +6,7 @@
   "permissions": [
     "activeTab"
   ],
-  "options_page": "options/index.html",
+  "options_page": "options.html",
   "action": {
     "default_title": "Svelte Extension",
     "default_icon": "favicon.png",
@@ -14,11 +14,33 @@
   },
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
-      "js": ["content_scripts/main.js"]
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content_scripts/loader.js"
+      ]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "*.css",
+        "*.js",
+        "*.png",
+        "content_scripts/*",
+        "app/*",
+        "app/pages/*.js",
+        "app/assests/pages/*.css"
+      ],
+      "matches": [
+        "<all_urls>"
+      ],
+      "use_dynamic_url": true
     }
   ],
   "icons": {
     "48": "favicon.png"
-  }
+  },
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwYMD60F9Vp3j0RQs806tkvR64CwBD0CwT3oiBSHxG9Nq6emGHhLqPl0KlnIz5RT6jPjnIl/IfduDx+vc9+OHWeDgJIFA/o4KQR4Xi0oGegQeA0jTTwuIbHwu0xr3PPEwyz9Ibt5fVgOt0TaJSSYh3VUZZ7YjIImFnW22qSmp59xE4aEWxjHmNW5hRJnJS/ChHjZFTHLKuuAt0AG/cIHlFUQ1Vwl9ONR2exiqaJEyNQrSCru38Dg3zg8DQk37ki0TXlSXEZjehITjQo1sw4L6xDqyd54YiyNKd77MuktvnEB5tEcWHG4iJamu0J5cdTznhaSCOZpX7rU7I411CDM4XwIDAQAB"
 }
